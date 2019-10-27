@@ -1,0 +1,14 @@
+{
+  "firstName": {
+    "value": "",
+    "msg": "Invalid value",
+    "param": "firstName",
+    "location": "body"
+  },
+  "lastName": {
+    "value": "",
+    "msg": "Invalid value",
+    "param": "lastName",
+    "location": "body"
+  }
+}

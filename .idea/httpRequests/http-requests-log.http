@@ -1,0 +1,28 @@
+POST http://localhost:5000/api/phone-numbers
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "firstName": "Olivier", "lastName": "Soumillon", "phoneNumber": "+39 02 1234567" }
+
+<> 2019-10-27T063331.200.json
+
+###
+
+POST http://localhost:5000/api/phone-numbers
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "firstName": "Olivier", "lastName": "Soumillon", "phoneNumber": "+39 02 1234567" }
+
+###
+
+POST http://localhost:5000/api/phone-numbers
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-10-27T061815.500.json
+
+###
+

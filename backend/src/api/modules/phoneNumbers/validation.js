@@ -1,8 +1,5 @@
 import {body, param} from 'express-validator'
-
-function isPhoneNumber (value) {
-  return true
-}
+import { isPhoneNumber } from '../../utils'
 
 export const createPhoneNumber = [
   body('firstName').trim().not().isEmpty(),
