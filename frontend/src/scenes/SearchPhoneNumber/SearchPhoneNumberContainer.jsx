@@ -1,30 +1,37 @@
-import React, { useState, useCallback } from 'react'
-import { useApiCall } from '../../hooks'
+import React, { useState, useCallback, useEffect } from 'react'
 import { searchPhoneNumber } from '../../services'
+import { useApiCall } from '../../hooks'
 import SearchPhoneNumber from './SearchPhoneNumber'
 
-const SearchPhoneNumberContainer = () => {
-  const [searchKey, setSearchKey] = useState('')
+const SearchPhoneNumberContainer = ({ searchKey, setSearchKey }) => {
   const [phoneNumbers, setPhoneNumbers] = useState([])
-  const { isLoading, isSuccess, error, call } = useApiCall(searchPhoneNumber)
+  const [isSearching, hasSearched, searchError, search] = useApiCall(searchPhoneNumber)
 
-  const onSearch = useCallback(async ({ target: { value }}) => {
-    if (value) {
-      const result = await call(value)
+  const performSearch = useCallback(async (searchKey) => {
+    if (searchKey) {
+      const result = await search(searchKey)
       setPhoneNumbers(result || [])
     } else {
       setPhoneNumbers([])
     }
+  }, [])
+
+  const onSearch = useCallback(async ({ target: { value }}) => {
+    performSearch(value)
     setSearchKey(value)
+  }, [])
+
+  useEffect(() => {
+    performSearch(searchKey)
   }, [])
 
   return (
     <SearchPhoneNumber
       searchKey={searchKey}
       onSearch={onSearch}
-      isLoading={isLoading}
-      isSuccess={isSuccess}
-      error={error}
+      isSearching={isSearching}
+      hasSearched={hasSearched}
+      searchError={searchError}
       phoneNumbers={phoneNumbers}
     />
   )

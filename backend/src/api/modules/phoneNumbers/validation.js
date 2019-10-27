@@ -18,6 +18,10 @@ export const deletePhoneNumber = [
   param('phoneNumberID')
 ]
 
+export const getPhoneNumber = [
+  param('phoneNumberID')
+]
+
 export const searchPhoneNumber = [
   query('searchKey').trim().not().isEmpty()
 ]

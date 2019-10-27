@@ -22,7 +22,7 @@ const useApiCall = (service) => {
     }
   }, [])
 
-  return { isLoading, isSuccess, error, call }
+  return [isLoading, isSuccess, error, call]
 }
 
 export default useApiCall

@@ -6,5 +6,6 @@ export default (app) => {
   app.post('/api/phone-numbers', validate(validation.createPhoneNumber), controllers.createPhoneNumber)
   app.post('/api/phone-numbers/:phoneNumberID', validate(validation.updatePhoneNumber), controllers.updatePhoneNumber)
   app.post('/api/phone-numbers/:phoneNumberID/delete', validate(validation.deletePhoneNumber), controllers.deletePhoneNumber)
+  app.get('/api/phone-numbers/:phoneNumberID', validate(validation.getPhoneNumber), controllers.getPhoneNumber)
   app.get('/api/phone-numbers', validate(validation.searchPhoneNumber), controllers.searchPhoneNumber)
 }

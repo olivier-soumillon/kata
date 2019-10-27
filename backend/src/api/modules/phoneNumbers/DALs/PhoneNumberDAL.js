@@ -1,6 +1,8 @@
 import { PhoneNumber } from '../models'
 
-export async function search (searchKey) {
+export const findByID = async (phoneNumberID) => await PhoneNumber.findById(phoneNumberID)
+
+export const search = async (searchKey) => {
   return await PhoneNumber.aggregate( [{
     $match: {
       $or: [
@@ -12,14 +14,8 @@ export async function search (searchKey) {
   }])
 }
 
-export async function create (data) {
-  return await new PhoneNumber(data).save({ new: true })
-}
+export const create = async (data) => await new PhoneNumber(data).save({ new: true })
 
-export async function update (id, changes) {
-  return await PhoneNumber.findByIdAndUpdate(id, changes)
-}
+export const update = async (id, changes) => await PhoneNumber.findByIdAndUpdate(id, changes)
 
-export async function remove (id) {
-  return await PhoneNumber.findByIdAndRemove(id)
-}
+export const remove = async (id) => await PhoneNumber.findByIdAndRemove(id)

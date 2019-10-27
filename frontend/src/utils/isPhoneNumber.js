@@ -1,0 +1,1 @@
+export default (value) => value.match(/\+[0-9]{2} [0-9]{2} [0-9]{7}/)
