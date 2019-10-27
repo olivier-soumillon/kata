@@ -1,0 +1,15 @@
+{
+  "server": {
+    "http": {
+      "port": 5000
+    }
+  },
+  "database": {
+    "connectionString": "mongodb://localhost/phoneNumbers"
+  },
+  "cors": {
+    "allowedOrigins": [
+      "http://localhost:3000"
+    ]
+  }
+}
