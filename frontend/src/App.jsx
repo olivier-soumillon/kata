@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import AddPhoneNumber from './scenes/AddPhoneNumber'
 import EditPhoneNumber from './scenes/EditPhoneNumber'

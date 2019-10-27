@@ -10,7 +10,7 @@ const useValidation = (rules) => {
 
     setErrors(errorList)
     return errorList.length === 0
-  }, [])
+  }, [rules])
 
   return [errors, validate]
 }

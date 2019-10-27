@@ -3,7 +3,6 @@ import { getPhoneNumber, updatePhoneNumber } from '../../services'
 import { useApiCall, usePhoneNumberForm } from '../../hooks'
 import { useParams } from 'react-router-dom'
 import EditPhoneNumber from './EditPhoneNumber'
-import AddPhoneNumber from '../AddPhoneNumber/AddPhoneNumberContainer'
 
 const EditPhoneNumberContainer = () => {
   const { phoneNumberID } = useParams()
@@ -20,8 +19,8 @@ const EditPhoneNumberContainer = () => {
     ...eventHandlers
   } = usePhoneNumberForm()
 
-  const [isUpdating, isUpdated, updateError, update] = useApiCall(updatePhoneNumber)
-  const [isFetching, isFetched, fetchError, fetch] = useApiCall(getPhoneNumber)
+  const [isUpdating, , updateError, update] = useApiCall(updatePhoneNumber)
+  const [isFetching, , fetchError, fetch] = useApiCall(getPhoneNumber)
 
   useEffect( () => {
     const initialiseData = async () => {
@@ -34,7 +33,7 @@ const EditPhoneNumberContainer = () => {
       })
     }
     initialiseData()
-  }, [fetch])
+  }, [fetch, phoneNumberID, setFormData])
 
   const onSubmit = useCallback(async () => {
     if (!validateFormData()) {
@@ -49,7 +48,10 @@ const EditPhoneNumberContainer = () => {
     }
 
     await update(params)
-  }, [phoneNumberID, lastName, firstName, phoneNumber, update])
+  }, [phoneNumberID, lastName, firstName, phoneNumber, update, validateFormData])
+
+  const fetchErrorStr = fetchError ? JSON.stringify(fetchError) : null
+  const updateErrorStr = updateError ? JSON.stringify(updateError) : null
 
   return (
     <EditPhoneNumber
@@ -60,12 +62,8 @@ const EditPhoneNumberContainer = () => {
       firstNameError={firstNameErrors[0]}
       phoneNumberError={phoneNumberErrors[0]}
       {...eventHandlers}
-      isUpdating={isUpdating}
-      isUpdated={isUpdated}
-      updateError={updateError}
-      isFetching={isFetching}
-      isFetched={isFetched}
-      fetchError={fetchError}
+      isLoading={isFetching || isUpdating}
+      error={fetchErrorStr || updateErrorStr}
       onSubmit={onSubmit}
     />
   )

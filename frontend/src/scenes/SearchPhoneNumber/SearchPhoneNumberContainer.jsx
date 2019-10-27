@@ -14,16 +14,18 @@ const SearchPhoneNumberContainer = ({ searchKey, setSearchKey }) => {
     } else {
       setPhoneNumbers([])
     }
-  }, [])
+  }, [search])
 
   const onSearch = useCallback(async ({ target: { value }}) => {
     performSearch(value)
     setSearchKey(value)
-  }, [])
+  }, [performSearch, setSearchKey])
 
   useEffect(() => {
     performSearch(searchKey)
-  }, [])
+  }, [performSearch, searchKey])
+
+  const errorStr = searchError ? JSON.stringify(searchError) : null
 
   return (
     <SearchPhoneNumber
@@ -33,6 +35,7 @@ const SearchPhoneNumberContainer = ({ searchKey, setSearchKey }) => {
       hasSearched={hasSearched}
       searchError={searchError}
       phoneNumbers={phoneNumbers}
+      error={errorStr}
     />
   )
 }

@@ -20,7 +20,7 @@ const useApiCall = (service) => {
       setError(error)
       return null
     }
-  }, [])
+  }, [service])
 
   return [isLoading, isSuccess, error, call]
 }

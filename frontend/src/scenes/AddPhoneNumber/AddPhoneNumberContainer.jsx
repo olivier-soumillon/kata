@@ -29,7 +29,9 @@ const AddPhoneNumberContainer = () => {
     }
 
     await call(params)
-  }, [lastName, firstName, phoneNumber, call])
+  }, [lastName, firstName, phoneNumber, call, validateFormData])
+
+  const errorStr = error ? JSON.stringify(error) : null
 
   return (
     <AddPhoneNumber
@@ -42,7 +44,7 @@ const AddPhoneNumberContainer = () => {
       {...eventHandlers}
       isLoading={isLoading}
       isSuccess={isSuccess}
-      error={error}
+      error={errorStr}
       onSubmit={onSubmit}
     />
   )

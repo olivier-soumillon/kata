@@ -28,23 +28,23 @@ const usePhoneNumberForm = () => {
   const onFirstNameChange = useCallback(({ target: { value }}) => {
     validateFirstName(value)
     setFirstName(value)
-  }, [])
+  }, [validateFirstName])
 
   const onLastNameChange = useCallback(({ target: { value }}) => {
     validateLastName(value)
     setLastName(value)
-  }, [])
+  }, [validateLastName])
 
   const onPhoneNumberChange = useCallback(({ target: { value }}) => {
     validatePhoneNumber(value)
     setPhoneNumber(value)
-  }, [])
+  }, [validatePhoneNumber])
 
   const validateFormData = useCallback(() => {
     return validateFirstName(firstName) &
       validateLastName(lastName) &
       validatePhoneNumber(phoneNumber)
-  }, [firstName, lastName, phoneNumber])
+  }, [firstName, lastName, phoneNumber, validateFirstName, validateLastName, validatePhoneNumber])
 
   return {
     firstName,
