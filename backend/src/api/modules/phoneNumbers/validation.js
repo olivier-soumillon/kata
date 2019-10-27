@@ -1,4 +1,4 @@
-import {body, param} from 'express-validator'
+import {body, param, query} from 'express-validator'
 import { isPhoneNumber } from '../../utils'
 
 export const createPhoneNumber = [
@@ -16,4 +16,8 @@ export const updatePhoneNumber = [
 
 export const deletePhoneNumber = [
   param('phoneNumberID')
+]
+
+export const searchPhoneNumber = [
+  query('searchKey').trim().not().isEmpty()
 ]

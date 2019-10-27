@@ -1,7 +1,15 @@
 import { PhoneNumber } from '../models'
 
-export async function findById (id) {
-  return await PhoneNumber.findById(id)
+export async function search (searchKey) {
+  return await PhoneNumber.aggregate( [{
+    $match: {
+      $or: [
+        { lastName: { $regex: searchKey, $options: 'i' } },
+        { firstName: { $regex: searchKey, $options: 'i' } },
+        { phoneNumber: { $regex: searchKey, $options: 'i' } }
+      ]
+    }
+  }])
 }
 
 export async function create (data) {
